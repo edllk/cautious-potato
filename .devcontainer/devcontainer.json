@@ -1,0 +1,5 @@
+{
+	"name": "Node.js & TypeScript",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:5-24-trixie"
+
+}
