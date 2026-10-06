@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mask Check</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Do I need a mask?</h1>
+      <p class="sub">PM2.5 check for Singapore, before you head out</p>
+    </header>
+
+    <section id="verdict" class="verdict verdict--loading" aria-live="polite">
+      <svg class="particles" id="particles" aria-hidden="true"></svg>
+      <svg class="verdict-icon" id="verdict-icon" viewBox="0 0 48 48" aria-hidden="true"></svg>
+      <div class="verdict-text">
+        <p class="verdict-title" id="verdict-title">Checking the air…</p>
+        <p class="verdict-reason" id="verdict-reason"></p>
+      </div>
+    </section>
+
+    <section class="readings" aria-label="Readings">
+      <div class="stat">
+        <span class="label">Now</span>
+        <span class="value" id="now">–</span>
+        <span class="note" id="band"></span>
+      </div>
+      <div class="stat">
+        <span class="label">Last 2 hrs</span>
+        <span class="value" id="trend">–</span>
+        <span class="note" id="trend-note"></span>
+      </div>
+      <div class="stat">
+        <span class="label">In 1 hr</span>
+        <span class="value" id="p1">–</span>
+        <span class="note">estimate</span>
+      </div>
+      <div class="stat">
+        <span class="label">In 2 hrs</span>
+        <span class="value" id="p2">–</span>
+        <span class="note">estimate</span>
+      </div>
+    </section>
+
+    <section class="card chart-card">
+      <h2 id="chart-title">Last 12 hours</h2>
+      <p class="key">
+        <span class="key-line"></span> Measured
+        <span class="key-line key-line--est"></span> Estimate
+        <span class="key-line key-line--threshold"></span> Your threshold
+      </p>
+      <figure class="chart">
+        <svg id="chart" role="img" aria-labelledby="chart-title"></svg>
+        <div class="tip" id="tip" hidden></div>
+      </figure>
+      <p class="caveat">Estimates extend the last two hours in a straight line. They're a rough guide, not a forecast.</p>
+    </section>
+
+    <section class="settings">
+      <fieldset>
+        <legend>Your region</legend>
+        <svg class="map" id="map" viewBox="0 0 480 240" aria-label="Map of Singapore regions"></svg>
+        <p class="key">
+          <span class="key-dot key-dot--ok"></span> No mask needed
+          <span class="key-dot key-dot--handy"></span> Keep one handy
+          <span class="key-dot key-dot--bring"></span> Bring a mask
+        </p>
+      </fieldset>
+      <fieldset>
+        <legend>Your threshold (µg/m³)</legend>
+        <div class="seg" id="presets"></div>
+        <label class="custom">
+          Custom
+          <input type="number" id="threshold" min="1" max="500" step="1" inputmode="numeric">
+        </label>
+        <p class="hint" id="preset-hint"></p>
+      </fieldset>
+    </section>
+
+    <footer>
+      <div class="status">
+        <span id="updated"></span>
+        <button type="button" id="refresh">Refresh</button>
+      </div>
+      <p>
+        1-hour PM2.5 from NEA via data.gov.sg. Bands: 0–55 Normal, 56–150 Elevated, 151–250 High, 251+ Very High.
+        Threshold presets are suggestions, not medical advice.
+      </p>
+    </footer>
+  </main>
+  <script src="graphics.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
