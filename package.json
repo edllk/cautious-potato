@@ -1,0 +1,11 @@
+{
+  "name": "block-lending",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A tiny Carousell for borrowing and lending among up to ten neighbours in one block",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "reset": "rm -f data/lending.db data/lending.db-* && echo \"Database deleted. Restart the server to start fresh.\""
+  }
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Block Lending</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <h1>Block Lending</h1>
+    <div id="who" hidden>
+      <span id="who-name"></span>
+      <button id="logout" class="link">Log out</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Logged out -->
+    <section id="auth" hidden>
+      <p class="lead">Borrow from next door instead of buying. For up to ten neighbours in one block.</p>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="login" role="tab">Log in</button>
+        <button class="tab" data-tab="join" role="tab">Join the block</button>
+      </div>
+
+      <form id="login-form" class="card">
+        <label>Name <input name="name" autocomplete="username" required></label>
+        <label>4-digit PIN <input name="pin" type="password" inputmode="numeric" pattern="\d{4}" maxlength="4" autocomplete="current-password" required></label>
+        <button type="submit">Log in</button>
+      </form>
+
+      <form id="join-form" class="card" hidden>
+        <label>Name <input name="name" maxlength="30" required></label>
+        <label>Unit <input name="unit" maxlength="12" placeholder="#08-123" required></label>
+        <label>Choose a 4-digit PIN <input name="pin" type="password" inputmode="numeric" pattern="\d{4}" maxlength="4" autocomplete="new-password" required></label>
+        <label>Join code <input name="code" required><small>Ask whoever set up the app.</small></label>
+        <button type="submit">Join</button>
+      </form>
+      <p id="auth-error" class="error" role="alert"></p>
+    </section>
+
+    <!-- Logged in -->
+    <section id="app" hidden>
+      <form id="add-form" class="card add">
+        <h2>Lend something</h2>
+        <fieldset class="kind-grid" id="kind-grid">
+          <legend class="sr-only">What are you lending?</legend>
+        </fieldset>
+        <input id="other-title" name="title" maxlength="80" placeholder="What is it? e.g. Rice cooker" hidden>
+        <input name="note" maxlength="300" placeholder="Note (optional): which one, any rules, e.g. Monopoly, max 3 days">
+        <button type="submit">Add item</button>
+      </form>
+
+      <div class="filters" role="group" aria-label="Filter">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="available">Available</button>
+        <button class="chip" data-filter="mine">Mine</button>
+        <button class="chip" data-filter="borrowing">I'm borrowing</button>
+      </div>
+
+      <p id="app-error" class="error" role="alert"></p>
+      <ul id="items" class="items"></ul>
+      <p id="empty" class="muted" hidden>Nothing here yet.</p>
+      <p id="members" class="muted small"></p>
+    </section>
+  </main>
+
+  <script src="kinds.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
